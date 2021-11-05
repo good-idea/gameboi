@@ -1,0 +1,11 @@
+{
+  "name": "@gameboi/types",
+  "version": "0.0.1",
+  "description": "Shared type definitiones for @gameboi",
+  "main": "dist/index.js",
+  "repository": "https://www.github.com/good-idea/gameboi",
+  "author": "Joseph Thomas",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {}
+}

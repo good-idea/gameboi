@@ -1,0 +1,83 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    name: Build, lint, and test on Node ${{ matrix.node }} and ${{ matrix.os }}
+
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node: ['14.x']
+        os: [ubuntu-latest]
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Use Node ${{ matrix.node }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Install deps and build (with cache)
+        uses: bahmutov/npm-install@v1
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Test
+        run: yarn test --ci --coverage --maxWorkers=2
+
+      - name: Build
+        run: yarn build
+
+  # TODO: Enable this when ready to publish!
+  # publish:
+  #   name: Publish to NPM
+  #   needs: test
+  #   runs-on: ubuntu-latest
+  #   if: github.ref == 'refs/heads/main'
+  #   steps:
+  #     - name: Checkout repo
+  #       uses: actions/checkout@v2
+  #       with:
+  #         token: ${{ secrets.SEMANTIC_RELEASE_GH_TOKEN }}
+  #
+  #     - uses: mstachniuk/ci-skip@v1
+  #       with:
+  #         commit-filter: 'skip-ci'
+  #
+  #     - name: Git Identity
+  #       if: ${{ env.CI_SKIP == 'false' }}
+  #       run: |
+  #         git config user.name github-actions
+  #         git config user.email github-actions@github.com
+  #         git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/$GITHUB_REPOSITORY
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_GH_TOKEN }}
+  #         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  #
+  #     - uses: actions/cache@v2
+  #       if: ${{ env.CI_SKIP == 'false' }}
+  #       with:
+  #         path: |
+  #           node_modules
+  #           packages/**/node_modules
+  #         key: ${{ runner.os }}-modules-${{ hashFiles('./yarn.lock') }}
+  #
+  #     - name: Install dependencies
+  #       if: ${{ env.CI_SKIP == 'false' }}
+  #       run: yarn install
+  #
+  #     - name: Build Packages
+  #       if: ${{ env.CI_SKIP == 'false' }}
+  #       run: yarn build
+  #
+  #     - name: Version & Release
+  #       if: ${{ env.CI_SKIP == 'false' }}
+  #       run: |
+  #         npm config set '//registry.npmjs.org/:_authToken' "${NPM_TOKEN}" 
+  #         yarn release
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_GH_TOKEN }}
+  #         NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

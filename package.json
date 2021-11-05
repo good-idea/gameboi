@@ -1,0 +1,62 @@
+{
+  "name": "@gameboi/root",
+  "version": "0.0.1",
+  "description": "Root package for gameboi",
+  "main": "index.js",
+  "repository": "https://www.github.com/good-idea/gameboi",
+  "author": "Joseph Thomas <joseph@good-idea.studio>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "yarn workspaces run build",
+    "test": "yarn workspaces run test",
+    "release": "semantic-release"
+  },
+  "workspaces": [
+    "packages/core",
+    "packages/types"
+  ],
+  "devDependencies": {
+    "@commitlint/cli": "^14.1.0",
+    "@commitlint/config-conventional": "^14.1.0",
+    "@types/eslint": "^7.28.2",
+    "@types/eslint-plugin-prettier": "^3.1.0",
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.11.6",
+    "@types/prettier": "^2.4.1",
+    "@types/rimraf": "^3.0.2",
+    "@types/tsc-watch": "^4.2.0",
+    "@typescript-eslint/eslint-plugin": "^5.3.0",
+    "@typescript-eslint/parser": "^5.3.0",
+    "eslint": "^8.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.26.1",
+    "husky": "=7",
+    "jest": "^27.3.1",
+    "jest-cli": "^27.3.1",
+    "lerna": "^4.0.0",
+    "lint-staged": "^11.2.6",
+    "markdown-toc-gen": "^1.0.1",
+    "npm-check-updates": "^12.0.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.4.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.7",
+    "tsc-watch": "^4.5.0",
+    "tsdx": "^0.14.1",
+    "typescript": "^4.4.4",
+    "typesync": "^0.8.0"
+  },
+  "lint-staged": {
+    "*.md": [
+      "doctoc --gitlab -u"
+    ],
+    "*.(json|js|jsx|ts|tsx|html|css|md)": [
+      "prettier --write"
+    ],
+    "*(.js|jsx|ts|tsx)": [
+      "eslint --fix"
+    ]
+  }
+}
