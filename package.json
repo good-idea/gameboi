@@ -13,8 +13,8 @@
     "release": "semantic-release"
   },
   "workspaces": [
-    "packages/core",
-    "packages/types"
+    "packages/*",
+    "examples/*"
   ],
   "devDependencies": {
     "@commitlint/cli": "^14.1.0",

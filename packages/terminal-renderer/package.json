@@ -1,0 +1,8 @@
+{
+  "name": "@gameboi/terminal-renderer",
+  "version": "0.0.1",
+  "description": "Terminal renderer for Gameboi",
+  "main": "dist/index.js",
+  "author": "Joseph Thomas",
+  "license": "MIT"
+}

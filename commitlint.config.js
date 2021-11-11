@@ -3,6 +3,6 @@ module.exports = {
   rules: {
     'body-max-line-length': [1, 'always', 100],
     'scope-empty': [2, 'never'],
-    'scope-enum': [2, 'always', ['release', 'repo', 'lib']],
-  },
+    'scope-enum': [2, 'always', ['release', 'examples', 'repo', 'lib']]
+  }
 }

@@ -1,8 +1,11 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["./src"],
+  "include": ["src"],
   "compilerOptions": {
-    "target": "es6",
-    "outDir": "build"
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@gameboi/*": ["../*/src"]
+    }
   }
 }

@@ -1,0 +1,15 @@
+{
+  "name": "@gameboi/terminal-wizard",
+  "version": "0.0.1",
+  "description": "A simple wizard game in the terminal",
+  "main": "dist/index.js",
+  "author": "Joseph Thomas",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "tsc-watch src/main.ts"
+  },
+  "dependencies": {
+    "redux": "^4.1.2"
+  }
+}
