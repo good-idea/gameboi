@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "tsc-watch src/main.ts"
+    "start": "tsc-node src/main.ts"
   },
   "dependencies": {
     "redux": "^4.1.2"
